@@ -1,0 +1,60 @@
+{
+  "_about": "Retrofit kit parts and the implement used in the sim. Real products with published specs. Values marked ASSUMPTION are not published and must be measured on the real machine.",
+  "implement": {
+    "name": "Kverneland Optima V, 6 rows",
+    "why": "JBJ is a Kverneland dealer; maize is planted in 75 cm rows",
+    "rows": 6, "row_spacing_m": 0.75, "working_width_m": 4.5,
+    "source": "Kverneland: Optima V seeds maize with 6 rows at 75 or 80 cm (Kverneland range brochure / press release); transport width 3 m (dealer listing)",
+    "length_behind_hitch_m": 1.9, "length_note": "ASSUMPTION for the 3D model",
+    "mass_kg": 1200, "mass_note": "ASSUMPTION",
+    "working_speed_kmh": 7.0, "working_speed_note": "ASSUMPTION: normal precision-planting speed. Tune per seed and soil"
+  },
+  "steering": {
+    "name": "Sveaverken F200 Max class auto steer (electric steering-wheel motor)",
+    "source": "sveaverken.com/f200-max-auto-steer-system",
+    "motor": "electric steering-wheel motor, 180 mm dia x 77 mm, 12/24 V, peak torque 15/20 Nm, IP65",
+    "steering_wheel_mm": 380,
+    "angle_sensor": "5 V, up to 200 Hz, resolution < 0.1 deg, IP67",
+    "terminal": "12.1 in touchscreen, 4 GB RAM, SIM/4G, 9-36 V",
+    "receiver": "GNSS smart antenna 162 x 67 mm, GPS L1/L2, GLONASS L1/L2, BDS B1I/B2I, Galileo E1/E5b, dual-antenna input, IP67",
+    "camera": "1920x1080, 120 deg FOV",
+    "front_wheel_rate_deg_s": 25.0, "front_wheel_rate_note": "ASSUMPTION: front-wheel steering rate through the motor + hydrostatic steering. Measure lock-to-lock time on JBJ's tractor",
+    "steer_response_s": 0.15, "steer_response_note": "ASSUMPTION: first-order lag of motor + hydraulics"
+  },
+  "gnss": {
+    "mode": "dual-antenna RTK (position + heading)",
+    "rate_hz": 10,
+    "rate_note": "u-blox ZED-F9P class receivers run RTK at up to 20 Hz; 10 Hz is the usual autosteer rate",
+    "rtk_fixed_sigma_m": 0.01, "rtk_fixed_note": "u-blox ZED-F9P datasheet: RTK 0.01 m + 1 ppm CEP",
+    "rtk_float_sigma_m": 0.25, "rtk_float_note": "ASSUMPTION: typical float solution",
+    "single_sigma_m": 1.5, "single_note": "u-blox ZED-F9P: 1.5 m CEP without corrections",
+    "antenna_baseline_m": 1.0,
+    "heading_sigma_deg": 0.15, "heading_note": "ArduSimple dual-antenna kits: ~0.14 deg at 1 m antenna separation",
+    "hold_without_corrections_s": 600, "hold_note": "Sveaverken F200 SE keeps cm accuracy 10 min after losing corrections (PRO: 20 min). The sim ignores this hold on purpose so the RTK-loss stop can be tested"
+  },
+  "lidar": {
+    "name": "Livox Mid-360",
+    "source": "livoxtech.com/mid-360/specs",
+    "range_m_10pct": 40, "range_m_80pct": 70, "blind_zone_m": 0.1,
+    "fov_h_deg": 360, "fov_v_min_deg": -7, "fov_v_max_deg": 52,
+    "point_rate_hz": 200000, "frame_rate_hz": 10,
+    "range_sigma_m": 0.02, "angular_sigma_deg": 0.15,
+    "size_mm": [65, 65, 60], "mass_kg": 0.265, "power_w": 6.5, "supply_v": "9-27", "ip": "IP67", "port": "100BASE-TX Ethernet",
+    "mount": "front of the tractor, upside down at 1.3 m, so the -7..52 deg field of view looks down at the ground ahead (-52..7 deg)",
+    "price_usd": 979, "price_note": "Livox list price, Oct 2026 (Mid-360L about EUR 739)"
+  },
+  "safety": {
+    "remote_heartbeat_hz": 10,
+    "remote_timeout_s": 0.5, "remote_timeout_note": "ASSUMPTION: stop if the handheld remote's signal is missing for 0.5 s (passive stop)",
+    "brake_decel_mps2": 1.5, "brake_decel_note": "ASSUMPTION: conservative stopping deceleration of a tractor on loose soil. Measure on JBJ's tractor",
+    "reaction_s": 0.3, "reaction_note": "ASSUMPTION: sensor frame + processing + actuator delay",
+    "stop_margin_m": 2.0,
+    "slow_zone_m": 15.0, "slow_speed_kmh": 3.0,
+    "obstacle_min_height_m": 0.3,
+    "rtk_loss_stop_s": 1.0,
+    "geofence_margin_m": 1.0
+  },
+  "computer": {"name": "NVIDIA Jetson Orin Nano Super", "price_usd": 249},
+  "io_board": {"name": "Teensy 4.1 + CAN transceiver + relay board (AgOpenGPS-style)"},
+  "remote_estop": {"name": "Industrial wireless e-stop (FORT Wireless E-Stop: up to 1 km line of sight; or Tele Radio)", "price_note": "quote only"}
+}

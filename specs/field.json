@@ -1,0 +1,13 @@
+{
+  "_about": "Test field. Shape and size are made up (about 3 ha, a typical small maize land); the location is real farmland near Schweizer-Reneke, North West, South Africa, where JBJ is based.",
+  "name": "Test field, Schweizer-Reneke",
+  "origin_lat": -27.2050, "origin_lon": 25.3600, "origin_alt_m": 1290.0,
+  "origin_note": "Local ENU origin (x = east, y = north). Schweizer-Reneke is at about 27.19 S, 25.33 E, ~1,280 m above sea level",
+  "boundary_enu_m": [[0, 0], [215, -8], [228, 128], [6, 140]],
+  "headland_passes": 3,
+  "swath_angle_deg": null,
+  "swath_angle_note": "null = parallel to the longest field edge (fewest turns)",
+  "turn_radius_m": 4.0,
+  "turn_radius_note": "Headland turn radius used by the planner (bigger than the tractor's minimum, so turns aren't at full lock)",
+  "turn_speed_kmh": 4.0
+}

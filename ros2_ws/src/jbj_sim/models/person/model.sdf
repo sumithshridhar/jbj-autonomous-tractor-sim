@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <model name="person">
+    <static>true</static>
+    <link name="link">
+      <collision name="c"><pose>0 0 0.875 0 0 0</pose><geometry><box><size>0.3 0.6 1.75</size></box></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://person/meshes/person.obj</uri></mesh></geometry></visual>
+    </link>
+  </model>
+</sdf>

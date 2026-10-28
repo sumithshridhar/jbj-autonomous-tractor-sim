@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <model name="cow">
+    <static>true</static>
+    <link name="link">
+      <collision name="c"><pose>0 0 0.675 0 0 0</pose><geometry><box><size>2.1 0.62 1.35</size></box></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://cow/meshes/cow.obj</uri></mesh></geometry></visual>
+    </link>
+  </model>
+</sdf>
