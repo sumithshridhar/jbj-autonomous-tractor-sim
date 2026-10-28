@@ -4,6 +4,7 @@ Planter: Kverneland Optima V, 6 rows. Ground truth comes from Gazebo, not from t
 
 | Scenario | Tractor | What happens | Safety stops | Outcome | Accuracy (cm) | |
 |---|---|---|---|---|---|---|
+| full_field | MF 5M.145 Dyna-4 | Plant the whole 3 ha field (26 passes + 3 headland laps) | none | coverage 99.27 % of the field, overlap 2.71 %, 69 min, 7.46 km | 0.99 / 2.2 / 15.9 | [report](full_field_mf_5m_145/report.png) |
 | cow | MF 5M.145 Dyna-4 | A cow is standing in the path 25 m ahead, later walks away | OBSTACLE x1 | closest the bumper got: 3.57 m (contact: no); stopped for obstacle at t=47.7 s; resumed by itself at t=72.0 s | 1.07 / 2.09 / 2.23 | [report](cow_mf_5m_145/report.png) |
 | cow | MF 7615 | A cow is standing in the path 25 m ahead, later walks away | OBSTACLE x1 | closest the bumper got: 3.46 m (contact: no); stopped for obstacle at t=47.8 s; resumed by itself at t=72.0 s | 1.02 / 2.05 / 2.19 | [report](cow_mf_7615/report.png) |
 | cow | MF 8732 Dyna-VT | A cow is standing in the path 25 m ahead, later walks away | OBSTACLE x1 | closest the bumper got: 3.39 m (contact: no); stopped for obstacle at t=48.2 s; resumed by itself at t=72.5 s | 1.05 / 2.06 / 2.21 | [report](cow_mf_8732/report.png) |

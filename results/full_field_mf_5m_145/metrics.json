@@ -1,0 +1,35 @@
+{
+ "scenario": "full_field",
+ "tractor": "MF 5M.145 Dyna-4",
+ "tractor_id": "mf_5m_145",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 4134.7,
+ "distance_m": 7464.7,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "plan_done",
+   "t": 4134.68
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 0.99,
+  "rms": 1.66,
+  "p95": 2.2,
+  "max": 15.9
+ },
+ "gnss_error": {
+  "pos_rms_cm": 17.61,
+  "heading_rms_deg": 0.448,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {},
+ "field_ha": 3.025,
+ "coverage_pct": 99.27,
+ "overlap_pct": 2.71,
+ "planted_outside_field_m2": 9.9,
+ "planting_runs": 29
+}

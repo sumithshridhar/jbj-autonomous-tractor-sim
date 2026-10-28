@@ -14,7 +14,8 @@ everything that is a guess is marked **ASSUMPTION** and needs measuring on a rea
 
 | Test | What the tractor did |
 |---|---|
-| Planting accuracy (RTK) | **1.1-1.4 cm** average off the line, **95 % within 2.1 cm** (the F200 is sold as 2.5 cm) |
+| **Plant the whole 3 ha field** by itself (26 passes + 3 headland laps, 7.46 km) | Finished in **69 min with zero stops**: **99.3 % of the field planted**, 2.7 % overlap, 0.99 cm average off the line |
+| Planting accuracy (RTK) | **1.0-1.4 cm** average off the line, **95 % within 2.2 cm** in every run (the F200 is sold as 2.5 cm) |
 | Cow standing in the path, 25 m ahead | Slowed, then **stopped 3.6 m short**; drove on by itself 5 s after the cow walked away |
 | Person walking across, 22 m ahead | Slowed to 3 km/h at 14.8 m; the person crossed 5.7 m ahead; no stop needed; back to full speed |
 | Operator presses the remote e-stop at 7 km/h | **Standing still after 1.5 s / 1.6 m** |
@@ -22,13 +23,16 @@ everything that is a guess is marked **ASSUMPTION** and needs measuring on a rea
 | RTK corrections lost | Stop triggered after 1.2 s, **standing after 2.5 s / 3.4 m**; restarted by itself 4 s after RTK came back |
 | Steering motor jams at 8 deg | Off-track stop 3 s later, **standing after 4.3 s**; max 1.0 m off the line, never left the field |
 
-Every run, with plots and the 10 Hz log: [results/SUMMARY.md](results/SUMMARY.md). Planting the whole field and the
-MF 7615 / MF 8732 runs are added there as they finish.
+The MF 7615 and MF 8732 give the same safety results (cow: stopped 3.5 / 3.4 m short; e-stop: 1.5 s / 1.6 m) and
+1.0-1.2 cm planting accuracy. Every run, with plots and the 10 Hz log: [results/SUMMARY.md](results/SUMMARY.md).
+
+![Planting the whole field: plan vs. driven path, speed and accuracy](results/full_field_mf_5m_145/report.png)
 
 ![Stopped for a cow: real Gazebo run replayed in Blender](media/cow_stop.png)
 
-**Video (33 s, 2x speed):** [media/cow_mf_5m_145.mp4](media/cow_mf_5m_145.mp4): planting, the cow, the stop, the cow walks
-away, the tractor carries on. The tractor's path, speed and steering in the video are the logged Gazebo run.
+**Videos** (Blender replays of the logged Gazebo runs: the path, speed and steering are the simulation's, not animation):
+- [media/cow_mf_5m_145.mp4](media/cow_mf_5m_145.mp4) (33 s, 2x): planting, the cow, the stop, the cow walks away, the tractor carries on
+- [media/full_field_mf_5m_145.mp4](media/full_field_mf_5m_145.mp4) (30 s, 138x): the whole 3 ha field planted in 69 minutes
 
 ## What's in the sim
 
@@ -138,6 +142,8 @@ python3 tools/tune_follower.py                                           # fast 
 - Speed, shuttle and hitch are commanded directly (the plugin drives the wheels); a real tractor needs its electronic shuttle, throttle and hitch wired to the I/O board.
 - The planter is a visual + working-width model, not a dynamic implement.
 - Obstacles: the kit stops for anything in its path corridor above 0.3 m; it does not tell a person from a cow.
+- The planter stays down through the rounded corners of the headland laps, where the line error reaches ~16 cm (the
+  full-field maximum). A real planter would use section control or lift in tight corners.
 
 (c) 2026 Sumith Shridhar. All rights reserved for now; licence to be agreed with JBJ Machinery. Tractor and implement
 names are used to describe the real machines being simulated; no logos are reproduced.
