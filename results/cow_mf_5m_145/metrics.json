@@ -1,0 +1,49 @@
+{
+ "scenario": "cow",
+ "tractor": "MF 5M.145 Dyna-4",
+ "tractor_id": "mf_5m_145",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 92.0,
+ "distance_m": 106.6,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "obstacle_appears",
+   "t": 30.0,
+   "obstacle": "cow",
+   "ahead_of_bumper_m": 25.0
+  },
+  {
+   "event": "stopped_for_obstacle",
+   "t": 47.7,
+   "gap_m": 3.8
+  },
+  {
+   "event": "cow_walks_away",
+   "t": 62.8
+  },
+  {
+   "event": "resumed",
+   "t": 72.0
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 1.07,
+  "rms": 1.24,
+  "p95": 2.09,
+  "max": 2.23
+ },
+ "gnss_error": {
+  "pos_rms_cm": 11.61,
+  "heading_rms_deg": 0.145,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {
+  "STOP_OBSTACLE": 1
+ },
+ "min_gap_to_obstacle_m": 3.57,
+ "contact": false
+}

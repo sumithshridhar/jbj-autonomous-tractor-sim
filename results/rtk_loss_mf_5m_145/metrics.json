@@ -1,0 +1,51 @@
+{
+ "scenario": "rtk_loss",
+ "tractor": "MF 5M.145 Dyna-4",
+ "tractor_id": "mf_5m_145",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 100.1,
+ "distance_m": 152.7,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "rtk_lost",
+   "t": 40.09,
+   "speed_mps": 1.95
+  },
+  {
+   "event": "stop_detected",
+   "t": 41.29
+  },
+  {
+   "event": "standstill",
+   "t": 42.59
+  },
+  {
+   "event": "rtk_back",
+   "t": 55.09
+  },
+  {
+   "event": "resumed",
+   "t": 59.09
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 1.1,
+  "rms": 1.27,
+  "p95": 2.08,
+  "max": 2.43
+ },
+ "gnss_error": {
+  "pos_rms_cm": 27.19,
+  "heading_rms_deg": 0.609,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {
+  "STOP_RTK": 1
+ },
+ "time_to_standstill_s": 2.5,
+ "distance_to_standstill_m": 3.39
+}

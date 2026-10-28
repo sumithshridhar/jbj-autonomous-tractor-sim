@@ -1,0 +1,46 @@
+{
+ "scenario": "steering_fault",
+ "tractor": "MF 5M.145 Dyna-4",
+ "tractor_id": "mf_5m_145",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 49.4,
+ "distance_m": 78.6,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "steering_fault",
+   "t": 40.0,
+   "stuck_at_deg": 8.0
+  },
+  {
+   "event": "stop_detected",
+   "t": 43.0,
+   "state": "STOP_OFFTRACK"
+  },
+  {
+   "event": "standstill",
+   "t": 44.3
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 2.63,
+  "rms": 7.32,
+  "p95": 2.23,
+  "max": 60.42
+ },
+ "gnss_error": {
+  "pos_rms_cm": 16.56,
+  "heading_rms_deg": 0.201,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {
+  "STOP_OFFTRACK": 1
+ },
+ "time_to_standstill_s": 4.3,
+ "distance_to_standstill_m": 7.05,
+ "max_xte_m": 1.01,
+ "max_outside_field_m": 0.0
+}

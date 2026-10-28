@@ -1,0 +1,47 @@
+{
+ "scenario": "remote_estop",
+ "tractor": "MF 5M.145 Dyna-4",
+ "tractor_id": "mf_5m_145",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 80.1,
+ "distance_m": 117.9,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "estop_pressed",
+   "t": 40.09,
+   "speed_mps": 1.94
+  },
+  {
+   "event": "standstill",
+   "t": 41.59
+  },
+  {
+   "event": "estop_released",
+   "t": 50.09
+  },
+  {
+   "event": "resume_sent",
+   "t": 53.09
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 1.3,
+  "rms": 1.38,
+  "p95": 2.1,
+  "max": 2.26
+ },
+ "gnss_error": {
+  "pos_rms_cm": 13.94,
+  "heading_rms_deg": 0.143,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {
+  "STOP_ESTOP": 1
+ },
+ "time_to_standstill_s": 1.5,
+ "distance_to_standstill_m": 1.6
+}

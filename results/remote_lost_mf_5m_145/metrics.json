@@ -1,0 +1,47 @@
+{
+ "scenario": "remote_lost",
+ "tractor": "MF 5M.145 Dyna-4",
+ "tractor_id": "mf_5m_145",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 80.0,
+ "distance_m": 126.4,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "remote_signal_lost",
+   "t": 40.0,
+   "speed_mps": 1.94
+  },
+  {
+   "event": "stop_detected",
+   "t": 40.6
+  },
+  {
+   "event": "standstill",
+   "t": 41.9
+  },
+  {
+   "event": "resume_sent",
+   "t": 49.0
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 1.27,
+  "rms": 1.35,
+  "p95": 2.02,
+  "max": 2.23
+ },
+ "gnss_error": {
+  "pos_rms_cm": 12.69,
+  "heading_rms_deg": 0.143,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {
+  "STOP_REMOTE_LOST": 1
+ },
+ "time_to_standstill_s": 1.9,
+ "distance_to_standstill_m": 2.44
+}

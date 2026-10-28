@@ -5,7 +5,7 @@
 #   bash tools/sim.sh all [tractor]                       every scenario, results copied to results/
 set -o pipefail   # no -e: ROS setup.bash can return non-zero
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DST="$HOME/jbj"
+DST="${JBJ_DST:-$HOME/jbj}"   # JBJ_DST + GZ_PARTITION + ROS_DOMAIN_ID let two sims run side by side
 export JBJ_ROOT="$DST"
 source /opt/ros/lyrical/setup.bash
 
@@ -19,10 +19,10 @@ build() {
 run() {
   local scen="$1" tid="${2:-}" gui="${3:-false}"
   source "$DST/ros2_ws/install/setup.bash"
-  ros2 launch jbj_sim sim.launch.py scenario:="$scen" ${tid:+tractor:="$tid"} gui:="$gui" 2>&1 | grep -E "\[jbj\]|scenario_runner|ERROR|Traceback|Error" || true
+  ros2 launch jbj_sim sim.launch.py scenario:="$scen" ${tid:+tractor:="$tid"} gui:="$gui" runs:="${JBJ_RUNS:-$HOME/jbj_runs}" 2>&1 | grep -E "\[jbj\]|scenario_runner|ERROR|Traceback|Error" || true
   local name="${scen}_${tid:-$(python3 -c "import json;print(json.load(open('$DST/specs/tractors.json'))['default'])")}"
   mkdir -p "$SRC/results/$name"
-  cp "$HOME/jbj_runs/$name/"{metrics.json,report.png,log.csv,plan.json} "$SRC/results/$name/" 2>/dev/null || true
+  cp "${JBJ_RUNS:-$HOME/jbj_runs}/$name/"{metrics.json,report.png,log.csv,plan.json} "$SRC/results/$name/" 2>/dev/null || true
 }
 
 case "$1" in

@@ -236,10 +236,14 @@ def main():
             obst.rotation_euler = (0, 0, YAW[k] + math.pi / 2)
             obst.keyframe_insert("location", frame=f)
             obst.keyframe_insert("rotation_euler", frame=f)
-        if CAM == "chase":
+        if CAM in ("chase", "behind"):
             c, s = math.cos(YAW[k]), math.sin(YAW[k])
-            target = Vector((X[k] + 5 * c, Y[k] + 5 * s, 1.0))
-            want = Vector((X[k] - 13 * c - 7 * s, Y[k] - 13 * s + 7 * c, 7.0))
+            if CAM == "chase":
+                target = Vector((X[k] + 5 * c, Y[k] + 5 * s, 1.0))
+                want = Vector((X[k] - 13 * c - 7 * s, Y[k] - 13 * s + 7 * c, 7.0))
+            else:      # straight behind and high: shows what is in the path ahead
+                target = Vector((X[k] + 12 * c, Y[k] + 12 * s, 0.0))
+                want = Vector((X[k] - 15 * c, Y[k] - 15 * s, 10.0))
             cam_pos = want if cam_pos is None else cam_pos.lerp(want, 0.08)
             cam.location = cam_pos
             cam.rotation_euler = (target - cam_pos).to_track_quat("-Z", "Y").to_euler()
@@ -257,6 +261,10 @@ def main():
     scene.render.resolution_x, scene.render.resolution_y = RES
     scene.view_settings.view_transform = "AgX"
     scene.render.image_settings.file_format = "PNG"
+    try:
+        scene.eevee.taa_render_samples = int(opt.get("samples", 16))   # 16 is plenty for a moving camera
+    except AttributeError:
+        pass
     OUT.mkdir(parents=True, exist_ok=True)
     write_hud(log, tt, t, kit, speed)
     frames = [int(v) for v in ONLY.split(",")] if ONLY else range(1, nframes + 1)
