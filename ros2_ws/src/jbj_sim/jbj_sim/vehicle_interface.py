@@ -6,6 +6,7 @@ Output: Twist for Gazebo's Ackermann drive (v, w = v tan(delta) / L). A steering
 import math
 
 import rclpy
+from rclpy.executors import ExternalShutdownException
 from ackermann_msgs.msg import AckermannDriveStamped
 from geometry_msgs.msg import Twist
 from rclpy.node import Node
@@ -62,7 +63,10 @@ class VehicleInterface(Node):
 
 def main():
     rclpy.init()
-    rclpy.spin(VehicleInterface())
+    try:
+        rclpy.spin(VehicleInterface())
+    except (KeyboardInterrupt, ExternalShutdownException):   # normal end of a run
+        pass
 
 
 if __name__ == "__main__":

@@ -27,6 +27,9 @@ MF 7615 / MF 8732 runs are added there as they finish.
 
 ![Stopped for a cow: real Gazebo run replayed in Blender](media/cow_stop.png)
 
+**Video (33 s, 2x speed):** [media/cow_mf_5m_145.mp4](media/cow_mf_5m_145.mp4): planting, the cow, the stop, the cow walks
+away, the tractor carries on. The tractor's path, speed and steering in the video are the logged Gazebo run.
+
 ## What's in the sim
 
 | | Real part / data | Source |

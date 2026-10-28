@@ -14,6 +14,7 @@ import math
 
 import numpy as np
 import rclpy
+from rclpy.executors import ExternalShutdownException
 from ackermann_msgs.msg import AckermannDriveStamped
 from geometry_msgs.msg import PoseStamped
 from rclpy.node import Node
@@ -216,7 +217,10 @@ class SafetySupervisor(Node):
 
 def main():
     rclpy.init()
-    rclpy.spin(SafetySupervisor())
+    try:
+        rclpy.spin(SafetySupervisor())
+    except (KeyboardInterrupt, ExternalShutdownException):   # normal end of a run
+        pass
 
 
 if __name__ == "__main__":

@@ -285,7 +285,7 @@ def write_hud(log, tt, t, kit, speed):
     lines = ["[Script Info]", "ScriptType: v4.00+", f"PlayResX: {RES[0]}", f"PlayResY: {RES[1]}", "",
              "[V4+ Styles]", "Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV",
              "Style: hud,DejaVu Sans,22,&H00FFFFFF,&H00000000,&H90000000,0,3,1,0,7,24,24,20",
-             "Style: stop,DejaVu Sans,30,&H004040FF,&H00000000,&H90000000,1,3,1,0,8,24,24,24", "",
+             "Style: stop,DejaVu Sans,30,&H004040FF,&H00000000,&H90000000,1,3,1,0,2,24,24,36", "",
              "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
     step = max(1, int(FPS / 5))
     for k in range(0, len(tt), step):

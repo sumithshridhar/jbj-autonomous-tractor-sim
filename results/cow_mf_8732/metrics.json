@@ -1,0 +1,49 @@
+{
+ "scenario": "cow",
+ "tractor": "MF 8732 Dyna-VT",
+ "tractor_id": "mf_8732",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 92.5,
+ "distance_m": 109.6,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "obstacle_appears",
+   "t": 30.0,
+   "obstacle": "cow",
+   "ahead_of_bumper_m": 25.0
+  },
+  {
+   "event": "stopped_for_obstacle",
+   "t": 48.2,
+   "gap_m": 3.6
+  },
+  {
+   "event": "cow_walks_away",
+   "t": 63.3
+  },
+  {
+   "event": "resumed",
+   "t": 72.5
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 1.05,
+  "rms": 1.22,
+  "p95": 2.06,
+  "max": 2.21
+ },
+ "gnss_error": {
+  "pos_rms_cm": 13.15,
+  "heading_rms_deg": 0.145,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {
+  "STOP_OBSTACLE": 1
+ },
+ "min_gap_to_obstacle_m": 3.39,
+ "contact": false
+}

@@ -1,0 +1,49 @@
+{
+ "scenario": "cow",
+ "tractor": "MF 7615",
+ "tractor_id": "mf_7615",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 92.1,
+ "distance_m": 109.8,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "obstacle_appears",
+   "t": 30.0,
+   "obstacle": "cow",
+   "ahead_of_bumper_m": 25.0
+  },
+  {
+   "event": "stopped_for_obstacle",
+   "t": 47.8,
+   "gap_m": 3.65
+  },
+  {
+   "event": "cow_walks_away",
+   "t": 62.8
+  },
+  {
+   "event": "resumed",
+   "t": 72.0
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 1.02,
+  "rms": 1.19,
+  "p95": 2.05,
+  "max": 2.19
+ },
+ "gnss_error": {
+  "pos_rms_cm": 8.64,
+  "heading_rms_deg": 0.145,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {
+  "STOP_OBSTACLE": 1
+ },
+ "min_gap_to_obstacle_m": 3.46,
+ "contact": false
+}

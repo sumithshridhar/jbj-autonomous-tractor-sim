@@ -1,0 +1,47 @@
+{
+ "scenario": "remote_estop",
+ "tractor": "MF 7615",
+ "tractor_id": "mf_7615",
+ "implement": "Kverneland Optima V, 6 rows",
+ "sim_time_s": 80.0,
+ "distance_m": 121.7,
+ "events": [
+  {
+   "event": "start",
+   "t": 0.0
+  },
+  {
+   "event": "estop_pressed",
+   "t": 40.0,
+   "speed_mps": 1.94
+  },
+  {
+   "event": "standstill",
+   "t": 41.5
+  },
+  {
+   "event": "estop_released",
+   "t": 50.0
+  },
+  {
+   "event": "resume_sent",
+   "t": 53.0
+  }
+ ],
+ "xte_planting_cm": {
+  "mean": 1.2,
+  "rms": 1.29,
+  "p95": 1.97,
+  "max": 2.17
+ },
+ "gnss_error": {
+  "pos_rms_cm": 10.63,
+  "heading_rms_deg": 0.143,
+  "note": "includes the 10 Hz update lag of a moving tractor"
+ },
+ "stops": {
+  "STOP_ESTOP": 1
+ },
+ "time_to_standstill_s": 1.5,
+ "distance_to_standstill_m": 1.65
+}
