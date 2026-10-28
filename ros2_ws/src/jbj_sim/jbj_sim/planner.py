@@ -281,6 +281,19 @@ def plan_field(field, kit, geom, ds=0.25):
             "swath_ys": ys, "work_back": work_back, "headland_m": H, "width": w, "radius": R}
 
 
+def plan_field_fit(field, kit, geom, max_passes=6):
+    """Like a farmer with a bigger tractor: widen the headland one pass at a time until every turn stays inside
+    the geofence with 0.3 m to spare for steering error."""
+    margin = kit["safety"]["geofence_margin_m"]
+    for passes in range(field["headland_passes"], max_passes + 1):
+        plan = plan_field(dict(field, headland_passes=passes), kit, geom)
+        chk = check_plan(plan, geom, kit, margin)
+        plan["headland_passes"] = passes
+        if chk["max_outside_m"] <= margin - 0.3:
+            break
+    return plan, chk
+
+
 def check_plan(plan, geom, kit, margin):
     """Max distance the tractor+planter footprint goes outside the field edge (m), and the minimum turn radius."""
     F = plan["field"]

@@ -30,8 +30,10 @@ class VehicleInterface(Node):
         self.delta = self.delta_rl = self.v = 0.0
         self.target = (0.0, 0.0)
         self.fault = 0.0
+        self.stuck = None
         self.create_subscription(AckermannDriveStamped, "/vehicle/cmd", self.on_cmd, 10)
         self.create_subscription(Float64, "/sim/steer_fault", lambda m: setattr(self, "fault", m.data), 10)
+        self.create_subscription(Float64, "/sim/steer_stuck", lambda m: setattr(self, "stuck", m.data), 10)
         self.pub = self.create_publisher(Twist, "/model/tractor/cmd_vel", 10)
         self.pub_state = self.create_publisher(Float64MultiArray, "/vehicle/state", 10)
         self.dt = 0.02
@@ -43,6 +45,8 @@ class VehicleInterface(Node):
     def step(self):
         d_t, v_t = self.target
         d_t = max(-self.dmax, min(self.dmax, d_t + self.fault))
+        if self.stuck is not None:          # jammed steering motor: wheels go to this angle whatever is commanded
+            d_t = self.stuck
         step = self.rate * self.dt
         self.delta_rl += max(-step, min(step, d_t - self.delta_rl))          # steering motor speed limit
         self.delta += (self.delta_rl - self.delta) * min(1.0, self.dt / self.tau)   # motor + hydraulics lag

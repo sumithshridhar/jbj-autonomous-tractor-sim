@@ -76,6 +76,7 @@ class ScenarioRunner(Node):
         self.pub_q = self.create_publisher(String, "/sim/gnss_quality", 10)
         self.pub_resume = self.create_publisher(Bool, "/operator/resume", 10)
         self.pub_fault = self.create_publisher(Float64, "/sim/steer_fault", 10)
+        self.pub_stuck = self.create_publisher(Float64, "/sim/steer_stuck", 10)
         self.cli_spawn = self.create_client(SpawnEntity, "/world/field/create")
         self.cli_pose = self.create_client(SetEntityPose, "/world/field/set_pose")
         self.create_timer(0.1, self.tick)
@@ -239,9 +240,9 @@ class ScenarioRunner(Node):
             if t >= te + 60:
                 self.ev["end"] = t
         if n == "steering_fault":
-            if t >= te:
-                self.pub_fault.publish(Float64(data=math.radians(6.0)))
-                self.mark("steering_fault", t, offset_deg=6.0)
+            if t >= te:                         # steering motor jams at 8 deg left
+                self.pub_stuck.publish(Float64(data=math.radians(8.0)))
+                self.mark("steering_fault", t, stuck_at_deg=8.0)
             if "steering_fault" in self.ev and st.startswith("STOP_"):
                 self.mark("stop_detected", t, state=st)
             if "stop_detected" in self.ev and v < 0.05:

@@ -43,11 +43,16 @@ def tractor_geometry(t, track):
             "hitch_x": -0.95, "lidar_xyz": (x_front - 0.02, 0.0, 1.30)}
 
 
+def track_of(t, tractors):
+    """Wheel track used for a tractor: its own track_m setting, else the row-crop default."""
+    return t.get("track_m", tractors["row_crop_track_m"])
+
+
 def tractor(tid=None, root=None):
     tr = load("tractors", root)
     tid = tid or tr["default"]
     t = tr["models"][tid]
-    return tid, t, tractor_geometry(t, tr["row_crop_track_m"])
+    return tid, t, tractor_geometry(t, track_of(t, tr))
 
 
 def implement_rear_x(kit):

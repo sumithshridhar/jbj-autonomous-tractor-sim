@@ -140,6 +140,10 @@ class SafetySupervisor(Node):
         if self.pose is None or self.hb_t is None:
             self.publish(0.0, "WAIT", self.reason)
             return
+        # The simulator's clock can jump when Gazebo loads a model. Don't blame the remote for a gap in our own clock.
+        if t - getattr(self, "last_step_t", t) > 0.25:
+            self.hb_t = max(self.hb_t, t - 0.05)
+        self.last_step_t = t
         reason = None
         # latched stops
         if self.estop_pressed:

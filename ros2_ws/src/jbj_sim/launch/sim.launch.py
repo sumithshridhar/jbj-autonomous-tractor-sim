@@ -25,9 +25,8 @@ def setup(context):
     gui = LaunchConfiguration("gui").perform(context) == "true"
     run_dir = Path(os.path.expanduser(LaunchConfiguration("runs").perform(context))) / f"{scenario}_{tid}"
     kit, field = spec.load("kit"), spec.load("field")
-    plan = planner.plan_field(field, kit, g)
-    chk = planner.check_plan(plan, g, kit, kit["safety"]["geofence_margin_m"])
-    save_plan(run_dir, plan, {"tractor": tid, "scenario": scenario, "check": chk})
+    plan, chk = planner.plan_field_fit(field, kit, g)
+    save_plan(run_dir, plan, {"tractor": tid, "scenario": scenario, "check": chk, "headland_passes": plan["headland_passes"]})
     x0, y0, yaw0 = plan["path"][0][:3]
     world = str(share / "worlds" / "field.sdf")
     gz_cmd = ["gz", "sim", "-r", "-v", "2", world] + ([] if gui else ["-s", "--headless-rendering"])

@@ -10,14 +10,14 @@
     "working_speed_kmh": 7.0, "working_speed_note": "ASSUMPTION: normal precision-planting speed. Tune per seed and soil"
   },
   "steering": {
-    "name": "Sveaverken F200 Max class auto steer (electric steering-wheel motor)",
-    "source": "sveaverken.com/f200-max-auto-steer-system",
-    "motor": "electric steering-wheel motor, 180 mm dia x 77 mm, 12/24 V, peak torque 15/20 Nm, IP65",
+    "name": "Sveaverken F200 auto steer (electric steering-wheel motor)",
+    "source": "sveaverken.com/f200-auto-steer-system (angle-sensor figures from the F200 Max page)",
+    "motor": "electric steering wheel 380 mm, 12/24 V, max torque 15/20 Nm, IP65; works 0.1-26 km/h, slopes up to 20 deg",
     "steering_wheel_mm": 380,
-    "angle_sensor": "5 V, up to 200 Hz, resolution < 0.1 deg, IP67",
-    "terminal": "12.1 in touchscreen, 4 GB RAM, SIM/4G, 9-36 V",
-    "receiver": "GNSS smart antenna 162 x 67 mm, GPS L1/L2, GLONASS L1/L2, BDS B1I/B2I, Galileo E1/E5b, dual-antenna input, IP67",
-    "camera": "1920x1080, 120 deg FOV",
+    "angle_sensor": "5 V, up to 200 Hz, resolution < 0.1 deg, IP67 (F200 Max figures)",
+    "terminal": "10.1 in 1280x800, > 500 nits, 4 GB RAM, 9-36 V, IP65",
+    "receiver": "GNSS receiver 162 x 67 mm, GPS L1/L2, GLONASS L1/L2, BDS B1I/B2I, Galileo E1/E5b, IP67, 2.5 cm",
+    "camera": "1920x1080 wired camera, 9-36 V",
     "front_wheel_rate_deg_s": 25.0, "front_wheel_rate_note": "ASSUMPTION: front-wheel steering rate through the motor + hydrostatic steering. Measure lock-to-lock time on JBJ's tractor",
     "steer_response_s": 0.15, "steer_response_note": "ASSUMPTION: first-order lag of motor + hydraulics"
   },

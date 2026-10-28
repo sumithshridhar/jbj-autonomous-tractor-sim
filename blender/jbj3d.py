@@ -15,7 +15,7 @@ from mathutils import Matrix, Vector
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "ros2_ws" / "src" / "jbj_sim"))
-from jbj_sim.spec import load, tractor_geometry, tyre_dims  # noqa: E402  (shared with the sim)
+from jbj_sim.spec import load, track_of, tractor_geometry, tyre_dims  # noqa: E402,F401  (shared with the sim)
 
 COL = {  # base colour, roughness, metallic, alpha, emission
     "mf_red": ((0.60, 0.02, 0.03), 0.35, 0.0, 1.0, 0.0),
@@ -259,7 +259,7 @@ def tractor_body(tid, t, kit, coll, track):
     xc0, xc1 = -0.72, 0.80
     o.append(box("cab_lower", "graphite", coll, ((xc0 + xc1) / 2, 0, (floor + tyre_top) / 2),
                  (xc1 - xc0, 2 * inner - 0.1, tyre_top - floor)))
-    cab_w = 1.36
+    cab_w = max(1.36, 2 * inner + 0.1)
     z_roof0 = H - 0.14
     for xp in (xc0, xc1):
         for yp in (-cab_w / 2, cab_w / 2):

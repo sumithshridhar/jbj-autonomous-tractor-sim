@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "ros2_ws" / "src" / "jbj_sim"))
-from jbj_sim.spec import load, tractor_geometry  # noqa: E402
+from jbj_sim.spec import load, track_of, tractor_geometry  # noqa: E402
 
 PKG = ROOT / "ros2_ws" / "src" / "jbj_sim"
 MODELS = PKG / "models"
@@ -207,7 +207,7 @@ def main():
     kit = load("kit", ROOT / "specs")
     field = load("field", ROOT / "specs")
     for tid, t in tr["models"].items():
-        g = tractor_geometry(t, tr["row_crop_track_m"])
+        g = tractor_geometry(t, track_of(t, tr))
         d = MODELS / tid
         d.mkdir(parents=True, exist_ok=True)
         (d / "model.sdf").write_text(tractor_sdf(tid, t, g, kit))

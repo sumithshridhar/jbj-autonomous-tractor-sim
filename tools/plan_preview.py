@@ -12,10 +12,10 @@ from jbj_sim import planner, spec  # noqa: E402
 
 tid, t, g = spec.tractor(sys.argv[1] if len(sys.argv) > 1 else None, ROOT / "specs")
 kit, field = spec.load("kit", ROOT / "specs"), spec.load("field", ROOT / "specs")
-plan = planner.plan_field(field, kit, g)
-chk = planner.check_plan(plan, g, kit, kit["safety"]["geofence_margin_m"])
+plan, chk = planner.plan_field_fit(field, kit, g)
+
 p = plan["path"]
-print(f"{tid}: swaths={plan['n_swaths']} angle={plan['angle_deg']:.1f} deg, path {chk['length_m']:.0f} m, "
+print(f"{tid}: headland passes={plan["headland_passes"]} swaths={plan["n_swaths"]} angle={plan['angle_deg']:.1f} deg, path {chk['length_m']:.0f} m, "
       f"min turn radius {chk['min_radius_m']:.2f} m (tractor min {g['r_min_rear_axle']:.2f} m), "
       f"footprint max outside field edge {chk['max_outside_m']:.2f} m (allowed {kit["safety"]["geofence_margin_m"]} m) worst at {chk["worst_where"]}")
 print("turn types:", sorted(set(k.split(':')[1] for k in plan['kinds'] if ':' in k and not k.startswith(('swath', 'headland')))))

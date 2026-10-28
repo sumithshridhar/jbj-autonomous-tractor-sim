@@ -48,10 +48,11 @@ def main():
     tractors, kit, field = J.load_specs()
     J.clear_scene()
     scene = bpy.context.scene
-    track = tractors["row_crop_track_m"]
+
     built = {}
     for i, (tid, t) in enumerate(tractors["models"].items()):
         coll = J.new_collection(tid)
+        track = J.track_of(t, tractors)
         body, kitobj, g = J.tractor_body(tid, t, kit, coll, track)
         wf = J.wheel(f"{tid}_wheel_front", coll, t["tyre_front"], 20, rear=False)
         wr = J.wheel(f"{tid}_wheel_rear", coll, t["tyre_rear"], 22, rear=True)
@@ -155,8 +156,9 @@ def render_all(built, planter_obj, tractors):
             if o.name.startswith("obstacle_"):
                 o.hide_render = True
         g = built[tid][3]
-        cam.location = (g["L"] + 6.5, -7.5, 3.2)
-        look_at(cam, (g["L"] * 0.35, 0, 1.2))
+        s = g["h_roof"] / 2.78                      # keep big tractors in frame
+        cam.location = (g["L"] + 6.5 * s, -7.5 * s, 3.2 * s)
+        look_at(cam, (g["L"] * 0.35, 0, 1.2 * s))
         scene.render.filepath = str(MEDIA / f"{tid}.png")
         bpy.ops.render.render(write_still=True)
         print(f"[jbj] rendered {scene.render.filepath}")

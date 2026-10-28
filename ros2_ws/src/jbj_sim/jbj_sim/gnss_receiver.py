@@ -56,6 +56,9 @@ class GnssReceiver(Node):
         dt = 0.1 if self.last_t is None else max(1e-3, t - self.last_t)
         self.last_t = t
         sigma, tau = self.gn[SIGMA_KEY[q]], TAU[q]
+        if q != getattr(self, "last_q", q):          # new fix type: the receiver's solution jumps to the new accuracy
+            self.err = self.rng.normal(0.0, sigma, 2)
+        self.last_q = q
         phi = math.exp(-dt / tau)
         self.err = phi * self.err + self.rng.normal(0.0, sigma * math.sqrt(1 - phi * phi), 2)
         if q == "FIXED":   # per-antenna noise that gives the published dual-antenna heading accuracy

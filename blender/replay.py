@@ -171,7 +171,7 @@ def main():
         return int(round((ts - T0) / speed * FPS)) + 1
 
     coll = J.new_collection("tractor")
-    body, kitobj, g = J.tractor_body(tid, t, kit, coll, tractors["row_crop_track_m"])
+    body, kitobj, g = J.tractor_body(tid, t, kit, coll, J.track_of(t, tractors))
     wf = J.wheel("wf", coll, t["tyre_front"], 20, rear=False)
     wr = J.wheel("wr", coll, t["tyre_rear"], 22, rear=True)
     pl = J.planter(coll, kit)
